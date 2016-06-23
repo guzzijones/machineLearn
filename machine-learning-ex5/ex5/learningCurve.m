@@ -22,13 +22,15 @@ error_train = zeros(m, 1);
 error_val   = zeros(m, 1);
 for i = 1:m
   %train
-  XTemp=Xtemp(1:i,:);
-  theta = trainLinearReg(Xtemp,y(1:i),lamda);
-  results = X*theta';
-  error = (1/(2*m))*sum(((results - y).^2));
+  Xtemp=X(1:i,:);
+  yTemp=y(1:i);
+  theta = trainLinearReg(Xtemp,yTemp,lambda);
+  results = Xtemp*theta;
+  [error,gradTrain] = linearRegCostFunction(Xtemp, yTemp, theta, 0);
   error_train(i)=error;
-  resultsCV=Xval*theta';
-  error_CV = (1/(2*m))*sum((resultsCV - yval).^2);
+  resultsCV=Xval*theta;
+  
+  [error_CV,grad] =linearRegCostFunction(Xval, yval, theta, 0);
   error_val(i)=error_CV;
 endfor
 % ====================== YOUR CODE HERE ======================

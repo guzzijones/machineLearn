@@ -28,7 +28,7 @@ thetawithoutfirst = theta([1])=[];
 %cost
 differences= predictions - y;
 diffSquared = differences.^2;
-J = (1/(2*m))*sum(diffSquared) + (lambda / (2*m))*(theta'*theta);
+J = (1/(2*m))*sum(diffSquared) + (lambda / (2*m))*sum((theta.^2));
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost and gradient of regularized linear 
@@ -49,6 +49,7 @@ J = (1/(2*m))*sum(diffSquared) + (lambda / (2*m))*(theta'*theta);
 
 
 % =========================================================================
+
 
 grad = grad(:);
 
